@@ -1,0 +1,36 @@
+{% extends 'blog/index.html' %}
+{% block title %} Login {% endblock %}
+{% block body %}
+<div class="">
+  <form action="{% url 'blog:login' %}" method="POST">
+    {% csrf_token %}
+    <div class="col-md-3">
+      <label for="email" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="col-md-6">
+      <label for="password" class="form-label">Password</label>
+      <div class="row">
+        <div class="col-md-6">
+          <input type="text" class="form-control" id="password" style="-webkit-text-security:disc;">
+        </div>
+        <div class="col-md-2">
+          <button class="btn" type="button" onclick="showPass();">👁</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</div>
+<script>
+  function showPass() {
+    if ($('#password').css('-webkit-text-security')=='none')
+      $('#password').css('-webkit-text-security', 'disc')
+    else
+      $('#password').css('-webkit-text-security', '')
+  }
+</script>
+{% endblock %}
